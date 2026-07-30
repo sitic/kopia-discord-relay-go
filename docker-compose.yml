@@ -1,0 +1,14 @@
+services:
+  kopia-discord-relay:
+    build: .
+    container_name: kopia-discord-relay
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      BEARER_TOKEN: "${BEARER_TOKEN:-}"
+      LISTEN_ADDR: ":8199"
+    ports:
+      - "8199:8199"
